@@ -19,10 +19,7 @@ public class FriendlyFitness
 		sc.nextLine();
 		
 		System.out.println("Please enter the gender/sex you were assigned at birth (m or f).");
-		String gender = sc.nextString();
-		sc.nextLine();
-		
-		
+		String gender = sc.nextLine();
 		
 	}
 	

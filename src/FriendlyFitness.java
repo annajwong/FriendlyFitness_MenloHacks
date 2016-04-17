@@ -1,4 +1,5 @@
 import java.util.*;
+import java.text.DecimalFormat;
 
 public class FriendlyFitness 
 {
@@ -6,6 +7,15 @@ public class FriendlyFitness
 
 	public static void main(String[] args) 
 	{
+		DecimalFormat df = new DecimalFormat("0.0");
+
+		String[] activities = {"Walking (3.0 mph)", "Jogging", "Running", "Swimming", "Yoga", "Weight lifting", "Biking"};
+		double[] mets = {3.5, 7.0, 10.0, 8.0, 2.5, 6.0, 8.0};
+		
+		System.out.println("Please enter the number of calories you have consumed.");
+		int calsToBurn = sc.nextInt();
+		sc.nextLine();
+
 		System.out.println("Please enter your age in years.");
 		int age = sc.nextInt();
 		sc.nextLine();
@@ -19,7 +29,14 @@ public class FriendlyFitness
 		sc.nextLine();
 		
 		System.out.println("Please enter the gender/sex you were assigned at birth (m or f).");
+		String gender = sc.nextLine();
 		
+		double bmr = calculateBMR(age, heightIn, weightLbs, gender);
+		for (int i = 0; i < activities.length; i++)
+		{
+			double timeMin = calculateMinToBurn(calsToBurn, bmr, mets[i]);
+			System.out.println(activities[i] + ": " + df.format(timeMin) + "mins");
+		}
 	}
 	
 	private static double calculateBMR(int age, double heightIn, double weightLbs, String gender)
@@ -37,10 +54,9 @@ public class FriendlyFitness
 		return bmr;
 	}
 	
-	private static double calculateTimeForCalBurn(int calToBurn, double bmr, double met)
+	private static double calculateMinToBurn(int calsToBurn, double bmr, double met)
 	{
-		double timeHrs = calToBurn / (bmr * met / 24);
-		return timeHrs;
+		double timeHrs = calsToBurn / (bmr * met / 24);
+		return timeHrs * 60;
 	}
-
 }

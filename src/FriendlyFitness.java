@@ -6,6 +6,15 @@ public class FriendlyFitness
 
 	public static void main(String[] args) 
 	{
+		Object[][] activityMETs = {
+			{"Walking (3.0 mph)", "Jogging", "Running", "Swimming", "Yoga", "Weight lifting", "Biking"},
+			{3.5, 7.0, 10, 8, 2.5, 6.0, 8.0}
+		};
+		
+		System.out.println("Please enter the number of calories you have consumed.");
+		int calsToBurn = sc.nextInt();
+		sc.nextLine();
+
 		System.out.println("Please enter your age in years.");
 		int age = sc.nextInt();
 		sc.nextLine();
@@ -20,6 +29,8 @@ public class FriendlyFitness
 		
 		System.out.println("Please enter the gender/sex you were assigned at birth (m or f).");
 		String gender = sc.nextLine();
+		
+		double bmr = calculateBMR(age, heightIn, weightLbs, gender);
 		
 	}
 	
@@ -38,10 +49,9 @@ public class FriendlyFitness
 		return bmr;
 	}
 	
-	private static double calculateTimeForCalBurn(int calToBurn, double bmr, double met)
+	private static double calculateTimeToBurn(int calsToBurn, double bmr, double met)
 	{
-		double timeHrs = calToBurn / (bmr * met / 24);
+		double timeHrs = calsToBurn / (bmr * met / 24);
 		return timeHrs;
 	}
-
 }

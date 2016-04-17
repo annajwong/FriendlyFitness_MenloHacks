@@ -6,15 +6,6 @@ public class FriendlyFitness
 
 	public static void main(String[] args) 
 	{
-		Object[][] activityMETs = {
-			{"Walking (3.0 mph)", "Jogging", "Running", "Swimming", "Yoga", "Weight lifting", "Biking"},
-			{3.5, 7.0, 10, 8, 2.5, 6.0, 8.0}
-		};
-		
-		System.out.println("Please enter the number of calories you have consumed.");
-		int calsToBurn = sc.nextInt();
-		sc.nextLine();
-
 		System.out.println("Please enter your age in years.");
 		int age = sc.nextInt();
 		sc.nextLine();
@@ -30,7 +21,37 @@ public class FriendlyFitness
 		System.out.println("Please enter the gender/sex you were assigned at birth (m or f).");
 		String gender = sc.nextLine();
 		
-		double bmr = calculateBMR(age, heightIn, weightLbs, gender);
+		int bmr = calculateBMR(age, heightIn, weightLbs, gender);
+		System.out.println("Here's your BMR: ");
+		System.out.println(bmr);
+		
+		System.out.println();
+		System.out.println("You have " + calculateTimeForCalBurn(calToBurn, bmr, met) + " hours to burn off those calories.");
+		
+		/*
+		Bike
+		Conditioning exercise
+		Dancing
+		Fishing and hunting
+		Home activities
+		Home repair
+		Inactivity light
+		Inactivity quiet
+		Lawn and garden
+		Miscellaneous
+		Music playing
+		Occupation
+		Religious activities
+		Running
+		Self care
+		Sexual Activity
+		Sports
+		Transportation
+		Volunteer Opportunities
+		Walking
+		Water Activities
+		Winter Activities
+		*/
 		
 	}
 	
@@ -49,9 +70,10 @@ public class FriendlyFitness
 		return bmr;
 	}
 	
-	private static double calculateTimeToBurn(int calsToBurn, double bmr, double met)
+	private static double calculateTimeForCalBurn(int calToBurn, double bmr, double met)
 	{
-		double timeHrs = calsToBurn / (bmr * met / 24);
+		double timeHrs = calToBurn / (bmr * met / 24);
 		return timeHrs;
 	}
+
 }
